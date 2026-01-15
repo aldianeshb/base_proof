@@ -1,0 +1,57 @@
+# BaseProof - Proof Type Definitions
+# Each proof type represents a verifiable action on Base
+
+proofs:
+  - type: BASE_CONTRACT_DEPLOYER
+    name: Base Contract Deployer
+    description: "Proves that an address has deployed at least one smart contract on Base mainnet"
+    verification_method: "indexer"
+    source_of_truth: "Base mainnet blockchain (CREATE opcode events)"
+    metadata_fields:
+      - contract_address
+      - deployment_tx_hash
+      - deployment_timestamp
+      - contract_bytecode_hash
+    
+  - type: BASE_TESTNET_USER
+    name: Base Testnet User
+    description: "Proves that an address has interacted with Base Sepolia testnet"
+    verification_method: "indexer"
+    source_of_truth: "Base Sepolia testnet blockchain"
+    metadata_fields:
+      - first_tx_hash
+      - first_tx_timestamp
+      - total_transactions
+    
+  - type: GOVERNANCE_PARTICIPANT
+    name: Governance Participant
+    description: "Proves that an address has participated in Base governance votes"
+    verification_method: "indexer"
+    source_of_truth: "Base governance contracts"
+    metadata_fields:
+      - proposal_id
+      - vote_tx_hash
+      - vote_timestamp
+      - vote_choice
+    
+  - type: OPEN_SOURCE_CONTRIBUTOR
+    name: Open Source Contributor
+    description: "Proves that an address is associated with merged PRs to Base ecosystem repositories"
+    verification_method: "github_api"
+    source_of_truth: "GitHub API (Base repositories)"
+    metadata_fields:
+      - github_username
+      - pr_url
+      - pr_merged_at
+      - repository_name
+    
+  - type: EARLY_BASE_USER
+    name: Early Base User
+    description: "Proves that an address was active on Base during early days (before a certain date)"
+    verification_method: "indexer"
+    source_of_truth: "Base mainnet blockchain"
+    metadata_fields:
+      - first_tx_hash
+      - first_tx_timestamp
+      - milestone_date
+
