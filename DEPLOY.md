@@ -1,6 +1,42 @@
 # 🚀 Quick Deployment Guide
 
-## Frontend на Vercel
+## 📋 Общий порядок деплоя
+
+1. **Контракты** → Base Sepolia/Mainnet
+2. **Backend API** → Railway/Render/другой хостинг
+3. **Frontend** → Vercel
+
+---
+
+## 1️⃣ Контракты на Base
+
+### Быстрый старт:
+
+```bash
+cd contracts
+
+# 1. Создать .env файл
+cp .env.example .env
+# Отредактировать .env: добавить PRIVATE_KEY и BASESCAN_API_KEY
+
+# 2. Установить OpenZeppelin
+forge install OpenZeppelin/openzeppelin-contracts --no-commit
+
+# 3. Деплой на Base Sepolia
+chmod +x scripts/deploy.sh
+./scripts/deploy.sh sepolia
+```
+
+### Что нужно:
+- **PRIVATE_KEY** - приватный ключ аккаунта для деплоя
+- **BASESCAN_API_KEY** - получить на https://basescan.org/apis
+- **Base Sepolia ETH** - получить из [Base Sepolia Faucet](https://www.coinbase.com/faucets/base-ethereum-goerli-faucet)
+
+📖 **Подробная инструкция:** [docs/contract-deployment.md](./docs/contract-deployment.md)
+
+---
+
+## 2️⃣ Frontend на Vercel
 
 ### Шаг 1: Подключите репозиторий
 

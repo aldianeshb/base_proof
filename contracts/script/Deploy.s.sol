@@ -8,7 +8,16 @@ import {ProofVerifier} from "../ProofVerifier.sol";
 contract DeployScript is Script {
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        string memory network = vm.envString("NETWORK");
+        
         vm.startBroadcast(deployerPrivateKey);
+        
+        console.log("==========================================");
+        console.log("BaseProof Contract Deployment");
+        console.log("==========================================");
+        console.log("Network:", network);
+        console.log("Deployer:", msg.sender);
+        console.log("");
         
         console.log("Deploying ProofRegistry...");
         ProofRegistry registry = new ProofRegistry();
@@ -20,10 +29,20 @@ contract DeployScript is Script {
         
         vm.stopBroadcast();
         
-        console.log("\n=== Deployment Summary ===");
-        console.log("Network:", vm.envString("NETWORK"));
+        console.log("");
+        console.log("==========================================");
+        console.log("Deployment Summary");
+        console.log("==========================================");
+        console.log("Network:", network);
         console.log("ProofRegistry:", address(registry));
         console.log("ProofVerifier:", address(verifier));
+        console.log("");
+        console.log("Next steps:");
+        console.log("1. Save these addresses");
+        console.log("2. Update backend/.env with PROOF_REGISTRY_ADDRESS");
+        console.log("3. Update frontend/.env.local with NEXT_PUBLIC_PROOF_REGISTRY_ADDRESS");
+        console.log("4. Update Vercel environment variables");
+        console.log("==========================================");
     }
 }
 

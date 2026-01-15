@@ -171,6 +171,7 @@ See [docs/integrations.md](./docs/integrations.md) for more examples.
 
 - [Proof Types](./docs/proofs.md) - Detailed proof type documentation
 - [Integration Guide](./docs/integrations.md) - How to integrate BaseProof
+- [Contract Deployment](./docs/contract-deployment.md) - Step-by-step contract deployment guide
 - [Vercel Deployment](./docs/vercel-deployment.md) - Step-by-step Vercel deployment guide
 - [API Reference](./docs/api.md) - REST API documentation (coming soon)
 
@@ -198,8 +199,37 @@ See [docs/integrations.md](./docs/integrations.md) for more examples.
 
 ### Smart Contracts
 
+#### Prerequisites
+
+1. Install [Foundry](https://book.getfoundry.sh/getting-started/installation)
+2. Get Base Sepolia ETH from [Base Sepolia Faucet](https://www.coinbase.com/faucets/base-ethereum-goerli-faucet)
+3. Get Basescan API Key from [Basescan](https://basescan.org/apis)
+
+#### Quick Deploy
+
 ```bash
 cd contracts
+
+# Setup environment
+cp .env.example .env
+# Edit .env with your PRIVATE_KEY and BASESCAN_API_KEY
+
+# Deploy to Base Sepolia (testnet)
+./scripts/deploy.sh sepolia
+
+# Deploy to Base Mainnet (after testing)
+./scripts/deploy.sh mainnet
+```
+
+#### Manual Deploy
+
+```bash
+cd contracts
+
+# Set environment variables
+export PRIVATE_KEY=your_private_key
+export NETWORK=sepolia
+export BASESCAN_API_KEY=your_api_key
 
 # Deploy to Base Sepolia
 forge script script/Deploy.s.sol:DeployScript \
@@ -213,6 +243,8 @@ forge script script/Deploy.s.sol:DeployScript \
   --broadcast \
   --verify
 ```
+
+📖 **Detailed instructions:** See [docs/contract-deployment.md](./docs/contract-deployment.md)
 
 ### Frontend
 
