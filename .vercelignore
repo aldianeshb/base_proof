@@ -1,0 +1,13 @@
+# Ignore files for Vercel deployment
+node_modules/
+.git/
+contracts/
+indexer/
+backend/
+sdk/
+docs/
+*.md
+!README.md
+.env*
+!.env.example
+

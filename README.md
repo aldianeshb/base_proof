@@ -171,6 +171,7 @@ See [docs/integrations.md](./docs/integrations.md) for more examples.
 
 - [Proof Types](./docs/proofs.md) - Detailed proof type documentation
 - [Integration Guide](./docs/integrations.md) - How to integrate BaseProof
+- [Vercel Deployment](./docs/vercel-deployment.md) - Step-by-step Vercel deployment guide
 - [API Reference](./docs/api.md) - REST API documentation (coming soon)
 
 ## 🛠️ Tech Stack
@@ -215,11 +216,34 @@ forge script script/Deploy.s.sol:DeployScript \
 
 ### Frontend
 
-Deploy to Vercel, Netlify, or your preferred hosting:
+#### Deploy to Vercel (Recommended)
+
+1. **Connect Repository:**
+   - Go to [Vercel](https://vercel.com)
+   - Import your GitHub repository `aldianeshb/baseproof`
+   - Set **Root Directory** to `frontend`
+
+2. **Configure Environment Variables:**
+   Add these in Vercel Dashboard → Settings → Environment Variables:
+   ```
+   NEXT_PUBLIC_API_URL=https://your-api-url.com
+   NEXT_PUBLIC_PROOF_REGISTRY_ADDRESS=0x...
+   NEXT_PUBLIC_CHAIN_ID=84532
+   NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+   ```
+
+3. **Deploy:**
+   - Click "Deploy"
+   - Vercel will automatically build and deploy
+
+📖 **Detailed instructions:** See [docs/vercel-deployment.md](./docs/vercel-deployment.md)
+
+#### Deploy to Other Platforms
 
 ```bash
 cd frontend
 npm run build
+# Deploy the .next folder to your hosting provider
 ```
 
 ## 🧪 Testing
