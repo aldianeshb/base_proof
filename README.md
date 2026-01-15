@@ -337,6 +337,14 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 - Inspired by the need for portable reputation primitives
 - Thanks to the Base community for feedback and support
 
+## 🔗 Deployed Contracts
+
+### Base Sepolia (Testnet)
+- **ProofRegistry:** [0xf6f246F4233c82c805D71d5D42D53De1abCC183e](https://sepolia.basescan.org/address/0xf6f246F4233c82c805D71d5D42D53De1abCC183e)
+- **ProofVerifier:** [0x8d618ea296a9208e6C57D9bDF43207b74BeDAc78](https://sepolia.basescan.org/address/0x8d618ea296a9208e6C57D9bDF43207b74BeDAc78)
+
+See [DEPLOYED_ADDRESSES.md](./DEPLOYED_ADDRESSES.md) for full deployment information.
+
 ## 📞 Contact & Links
 
 - **GitHub:** https://github.com/aldianeshb/baseproof

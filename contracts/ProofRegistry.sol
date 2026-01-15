@@ -191,16 +191,33 @@ contract ProofRegistry {
     function getProofTypeHolders(bytes32 proofType) external view returns (address[] memory) {
         uint256[] memory proofIds = proofsByType[proofType];
         
-        // Use a temporary mapping to track unique addresses
-        mapping(address => bool) storage seen;
-        address[] memory uniqueHolders = new address[](proofIds.length);
-        uint256 uniqueCount = 0;
+        // Collect all unique addresses (simple approach - may have duplicates in result)
+        // For large datasets, consider using off-chain indexing
+        address[] memory allSubjects = new address[](proofIds.length);
+        uint256 validCount = 0;
         
         for (uint256 i = 0; i < proofIds.length; i++) {
             Proof memory proof = proofs[proofIds[i]];
-            if (!proof.revoked && !seen[proof.subject]) {
-                seen[proof.subject] = true;
-                uniqueHolders[uniqueCount] = proof.subject;
+            if (!proof.revoked) {
+                allSubjects[validCount] = proof.subject;
+                validCount++;
+            }
+        }
+        
+        // Remove duplicates (simple O(n²) approach - fine for small datasets)
+        address[] memory uniqueHolders = new address[](validCount);
+        uint256 uniqueCount = 0;
+        
+        for (uint256 i = 0; i < validCount; i++) {
+            bool isDuplicate = false;
+            for (uint256 j = 0; j < uniqueCount; j++) {
+                if (uniqueHolders[j] == allSubjects[i]) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate) {
+                uniqueHolders[uniqueCount] = allSubjects[i];
                 uniqueCount++;
             }
         }

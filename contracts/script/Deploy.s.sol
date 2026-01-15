@@ -7,6 +7,7 @@ import {ProofVerifier} from "../ProofVerifier.sol";
 
 contract DeployScript is Script {
     function run() external {
+        // PRIVATE_KEY should be without 0x prefix in .env
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         string memory network = vm.envString("NETWORK");
         
